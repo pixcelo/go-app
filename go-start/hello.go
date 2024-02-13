@@ -49,6 +49,16 @@ type Person struct {
 	age  int
 }
 
+type Student struct {
+	name string
+	age  int
+}
+
+// 構造体にメソッドを定義
+func (s Student) printName() {
+	fmt.Println(s.name)
+}
+
 func main() {
 	// 構造体の初期化
 	var person Person
@@ -63,6 +73,9 @@ func main() {
 	// 構造体の初期化3　フィールド名の指定
 	person3 := Person{name: "Foo", age: 30}
 	fmt.Println((person3))
+
+	student := Student{name: "Make", age: 10}
+	student.printName()
 
 	// cal(2, 3)
 	// result := cal2(2, 3)
