@@ -61,4 +61,23 @@ func main() {
 	fmt.Println(arryD[1][0])
 	fmt.Println(arryD[1][1])
 	fmt.Println(reflect.TypeOf(arryD))
+
+	// age := 5
+	// if age >= 2 {
+	// 	fmt.Println("adult")
+	// } else if age == 0 {
+	// 	fmt.Println(("baby"))
+	// } else {
+	// 	fmt.Println(("child"))
+	// }
+
+	// 簡易文を使ったifステートメント(セミコロンで区切る)
+	if age := 30; age >= 20 {
+		fmt.Println("adult")
+	} else if age == 0 {
+		fmt.Println(("baby"))
+	} else {
+		fmt.Println(("child"))
+	}
+
 }
