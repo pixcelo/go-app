@@ -42,4 +42,23 @@ func main() {
 	var num_bool bool = a > b
 	fmt.Println(num_bool)
 	fmt.Println(reflect.TypeOf(num_bool))
+
+	// Array
+	arry := [3]string{"Tom", "Ken", "Mary"}
+	arry[1] = "Jim"
+
+	fmt.Println(arry[0])
+	fmt.Println(arry[1])
+	fmt.Println(reflect.TypeOf(arry))
+
+	// 省略記法
+	arryC := [...]string{"Tom", "Ken", "Mary"}
+	fmt.Println(arryC[0])
+
+	arryD := [2][2]string{{"1", "2"}, {"3", "4"}}
+	fmt.Println(arryD[0][0])
+	fmt.Println(arryD[0][1])
+	fmt.Println(arryD[1][0])
+	fmt.Println(arryD[1][1])
+	fmt.Println(reflect.TypeOf(arryD))
 }
