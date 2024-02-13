@@ -43,12 +43,32 @@ func cal5(x, y int) (a int, b int) {
 	return
 }
 
+// 構造体
+type Person struct {
+	name string
+	age  int
+}
+
 func main() {
+	// 構造体の初期化
+	var person Person
+	person.name = "Tom"
+	person.age = 20
+	fmt.Println((person))
+
+	// 構造体の初期化2
+	person2 := Person{"Ken", 15}
+	fmt.Println((person2))
+
+	// 構造体の初期化3　フィールド名の指定
+	person3 := Person{name: "Foo", age: 30}
+	fmt.Println((person3))
+
 	// cal(2, 3)
 	// result := cal2(2, 3)
 	// fmt.Println(result)
-	result1, result2 := cal3(3, 3)
-	fmt.Println(result1, result2)
+	// result1, result2 := cal3(3, 3)
+	// fmt.Println(result1, result2)
 
 	// 関数を変数に代入
 	// hello := func(greeting string) {
@@ -58,9 +78,9 @@ func main() {
 	// hello("hello")
 
 	// 無名関数 jsの即時関数みたいな書き方
-	func(greeting string) {
-		fmt.Println(greeting)
-	}("hello")
+	// func(greeting string) {
+	// 	fmt.Println(greeting)
+	// }("hello")
 
 	// sayHello("hello")
 	// fmt.Println("Hello, world")
