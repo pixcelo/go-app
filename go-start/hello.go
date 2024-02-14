@@ -1,15 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+	"strconv"
+)
 
 //import "fmt"
-//import "reflect"
 
 // "reflect"
 
-// func sayHello() {
-// 	fmt.Println("hello")
-// }
+//	func sayHello() {
+//		fmt.Println("hello")
+//	}
 func sayHello(greeting string) {
 	fmt.Println(greeting)
 }
@@ -20,7 +23,7 @@ func cal(x, y int) {
 	fmt.Println(x * y)
 }
 
-//戻り値があれば戻り値の型も必要
+// 戻り値があれば戻り値の型も必要
 func cal2(x, y int) int {
 	return x * y
 }
@@ -77,6 +80,8 @@ func main() {
 	student := Student{name: "Make", age: 10}
 	student.printName()
 
+	fmt.Println(("====================="))
+
 	// cal(2, 3)
 	// result := cal2(2, 3)
 	// fmt.Println(result)
@@ -97,6 +102,70 @@ func main() {
 
 	// sayHello("hello")
 	// fmt.Println("Hello, world")
+
+	// まとめて変数を宣言
+	// var (
+	// 	firstName string = "John"
+	// 	lastName  string = "Doe"
+	// 	age       int    = 32
+	// )
+
+	// 型推定
+	// var (
+	// 	firstName = "John"
+	// 	lastName  = "Doe"
+	// 	age       = 32
+	// )
+
+	// カンマ区切りの書き方
+	// var (
+	// 	firstName, lastName, age = "John", "Doe", 32
+	// )
+
+	// fmt.Println((firstName))
+	// fmt.Println((lastName))
+	// fmt.Println((age))
+
+	// := は新規の変数宣言のみ使える(定義された場所がわかる)
+	// firstName, lastName := "John", "Doe"
+	// age := 32
+	// fmt.Println(firstName, lastName, age)
+
+	// 定数
+	// const MAX_NUMBER = 200
+	// fmt.Println(MAX_NUMBER)
+
+	// rune は単に、int32 データ型の別名
+	// rune := 'G'
+	// fmt.Println(rune) // 71
+
+	// var integer32 int = 2147483648
+	// fmt.Println(integer32)
+
+	// 文字列のエスケープ
+	// \n 改行
+	// \r 復帰
+	// \t タブ
+	// \' 単一引用符
+	// \" 二重引用符
+	// \\ バックスラッシュ
+	fullName := "John Doe \t(alias \"Foo\")\n"
+	fmt.Println(fullName)
+
+	// 変数を初期化しない場合、規定値が入る
+	var defaultInt int
+	var defaultFloat32 float32
+	var defaultFloat64 float64
+	var defaultBool bool
+	var defaultString string
+	fmt.Println(defaultInt, defaultFloat32, defaultFloat64, defaultBool, defaultString)
+
+	// 明示的に指定する型変換(暗黙的なキャストは出来ない)
+	i, _ := strconv.Atoi("-42") // 文字列型を数値型に変換
+	s := strconv.Itoa(-42)      // 数値型を文字列型に変換
+	fmt.Println(i, s)
+	fmt.Println(reflect.TypeOf((i)))
+	fmt.Println(reflect.TypeOf((s)))
 
 	// var num int
 	// num = 1
