@@ -6,19 +6,24 @@ import (
 )
 
 func main() {
-	exePath := "./net6.0/ExcelConverter.exe"
-
 	arg1 := ""
 	arg2 := ""
 
-	cmd := exec.Command(exePath, arg1, arg2)
-
-	output, err := cmd.CombinedOutput()
+	err := convertToXlsx(arg1, arg2)
 	if err != nil {
-		fmt.Println("Error executing command:", err)
-		return
+		fmt.Println("Error executing conversion:", err)
+	}
+}
+
+// Convert xls to xlsx
+func convertToXlsx(sourcePath, targetPath string) error {
+	path := "./net6.0/ExcelConverter.exe"
+	cmd := exec.Command(path, sourcePath, targetPath)
+
+	_, err := cmd.CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("error executing command: %w", err)
 	}
 
-	// 出力を表示
-	fmt.Println("Command output:", string(output))
+	return nil
 }
