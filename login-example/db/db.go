@@ -11,7 +11,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-func NewDB() (*sqkx.DB, error) {
+func NewDB() (*sqlx.DB, error) {
 	// 環境変数からDB情報を取得
 	dbUser := os.Getenv("DB_USERR")          // login-user
 	dbPassword := os.Getenv(("DB_PASSWORD")) // login-pass
