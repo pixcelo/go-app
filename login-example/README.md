@@ -17,6 +17,7 @@ go get github.com/go-sql-driver/mysql
 go get github.com/jmoiron/sqlx
 ```
 
-## 
+## Reference
 - [Echo](https://echo.labstack.com/)
 - [Air](https://github.com/cosmtrek/air)
+- [sqlx](https://github.com/jmoiron/sqlx)
