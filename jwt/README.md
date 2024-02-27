@@ -48,3 +48,5 @@ JWD認証は、Webアプリケーション間でのセキュアな情報交換�
 どちらの技術も似た目的で使用されますが、扱うデータの形式や要件に応じて選択することが重要です。
 
 ## Reference
+- [MongoDB Connection Guide](https://www.mongodb.com/docs/drivers/go/current/fundamentals/connections/connection-guide/)
+- [MongoDB Quick Start](https://www.mongodb.com/docs/drivers/go/current/quick-start/#std-label-golang-quickstart)
