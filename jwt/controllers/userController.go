@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	database "jwt/database"
 	helper "jwt/helper"
 	"log"
@@ -12,6 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -46,7 +48,7 @@ func Signup() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while checking for the email"})
 		}
 
-		count, err := userCollection.CountDocuments(ctx, bson.M{"email": user.Phone})
+		count, err = userCollection.CountDocuments(ctx, bson.M{"email": user.Phone})
 		defer cancel()
 		if err != nil {
 			log.Panic(err)
@@ -56,6 +58,26 @@ func Signup() gin.HandlerFunc {
 		if count > 0 {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "this phone number already exists"})
 		}
+
+		user.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		user.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		user.ID = primitive.NewObjectID()
+		user.User_id = user.ID.Hex()
+
+		// Generate Token
+		token, refreshToken, _ := helper.GenerateAllTokens(*user.Email, *user.First_name, *user.Last_name, *user.User_type, *&user.User_id)
+		user.Token = &token
+		user.RefreshToken = &refreshToken
+
+		// Insert to MongoDB
+		resultInsertionNumber, insertErr := userCollection.InsertOne(ctx, user)
+		if insertErr != nil {
+			msg := fmt.Sprintf("User item was not created")
+			c.JSON(http.StatusInternalServerError, gin.H{"error:": msg})
+			return
+		}
+		defer cancel()
+		c.JSON(http.StatusOK, resultInsertionNumber)
 	}
 }
 
