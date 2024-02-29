@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"log"
 	"os"
 	"time"
 
@@ -40,5 +41,12 @@ func GenerateAllTokens(email string, firstName string, lastname string, userType
 	}
 
 	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(SECRET_KEY))
-	refreshClaims, err := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshClaims).SignedString([]byte(SECRET_KEY))
+	refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshClaims).SignedString([]byte(SECRET_KEY))
+
+	if err != nill {
+		log.Panic(err)
+		return
+	}
+
+	return token, refreshToken, err
 }
