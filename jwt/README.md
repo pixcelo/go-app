@@ -50,3 +50,4 @@ JWD認証は、Webアプリケーション間でのセキュアな情報交換�
 ## Reference
 - [MongoDB Connection Guide](https://www.mongodb.com/docs/drivers/go/current/fundamentals/connections/connection-guide/)
 - [MongoDB Quick Start](https://www.mongodb.com/docs/drivers/go/current/quick-start/#std-label-golang-quickstart)
+- [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt)
