@@ -1,4 +1,4 @@
-package helpers
+package helper
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CheckUserType(c *gin.Contextm, role string) (err error) {
+func CheckUserType(c *gin.Context, role string) (err error) {
 	userType := c.GetString("user_type")
 	err = nil
 	if userType == role {

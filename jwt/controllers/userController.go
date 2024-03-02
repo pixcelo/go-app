@@ -9,6 +9,7 @@ import (
 	helper "jwt/helper"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	models "command-line-argumentsC:\\Users\\bodom\\Documents\\go-app\\jwt\\models\\userModel.go"
@@ -148,7 +149,54 @@ func Login() gin.HandlerFunc {
 	}
 }
 
-func GetUsers()
+func GetUsers() gin.HandleFunc {
+	return func(c *gin.Context){
+		helper.CheckUserType(c, "ADMIN"): err != nil{
+			c.JSON(http.StatusBadRequestRequest, gin.H{"error":err.Error()})
+			return
+		}
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+
+		recordPerPage, err := strconv.Atoi(c.Query("recordPerPage"))
+		if err != nil || recprdPerPage < 1 {
+			recordPerPage = 10
+		}
+		page, err1 := strconv.Atoi(c.Query("page"))
+		if err1 != nil || page < 1 {
+			page = 1
+		}
+
+		startIndex := (page -1) * recordPerPage
+		startIndex, err = strconv.Atoi(c.Query("startIndex"))
+
+		matchStage := bson.D{{"$match", bson.D{{}}}}
+		groupStage := bson.D{{"$group", bson.D{
+			{"_id", bson.D{{"_id", "null"}}},
+			{"total_count", bson.D{{"$sum", 1}}},
+			{"data", bson.D{{"$push", "$$ROOT"}}}
+		}}}
+		projectStage := bson.D{
+			{"$project", 0}, bson.D{
+				{"_id", 0},
+				{"$total_count", 1},
+				{"user_items", bson.D{{"$slice", []interface{}{"$data", startIndex, recordPerPage}}}},
+			}}
+		}
+
+		result, err := userCollection.Aggregate(ctx, mongo.Pipeline{
+			matchStage, groupStage, projectStage	
+		})
+		defer cancel()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error":"error occured while listing user items"})
+		}
+		var allUsers []bson.M
+		if err = result.All(ctx, &allusers); err != nil {
+			log.Fatal(err)
+		}
+		c.JSON(http.StatusOk, allusers[0])
+	}
+}
 
 func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
