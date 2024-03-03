@@ -1,4 +1,4 @@
-module gihub.com/pixcelo/go-gin1
+module gihub.com/pixcelo/go-mvc
 
 go 1.22.0
 
