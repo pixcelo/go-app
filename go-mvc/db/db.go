@@ -2,7 +2,8 @@ package db
 
 import (
 	"fmt"
-	"mvc_gorm_gin/config"
+
+	"github.com/pixcelo/go-mvc/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

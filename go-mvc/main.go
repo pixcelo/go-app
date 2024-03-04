@@ -1,17 +1,25 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+
+	config "github.com/pixcelo/go-mvc/config"
+	controllers "github.com/pixcelo/go-mvc/controllers"
+	db "github.com/pixcelo/go-mvc/db"
 )
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run("localhost:8530") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	// Load configurations
+	config.LoadConfig()
+
+	// Initialize database connection
+	db.Connect()
+
+	// Setup Gin router
+	router := gin.Default()
+
+	// Register routes
+	controllers.RegisterRoutes(router)
+
+	router.Run("localhost:8530")
 }
