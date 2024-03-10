@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ダッシュボード</title>
+   <style>
+       body {
+           margin: 0;
+           padding: 0;
+           font-family: Arial, sans-serif;
+       }
+
+       .sidebar {
+           width: 200px;
+           height: 100vh;
+           background-color: #333;
+           color: #fff;
+           padding: 20px;
+           box-sizing: border-box;
+           position: fixed;
+           left: 0;
+           top: 0;
+       }
+
+       .main-content {
+           margin-left: 220px;
+           padding: 20px;
+       }
+
+       ul {
+           list-style-type: none;
+           
+       }
+       
+       a {
+           text-decoration: none;
+           color: white;
+       }
+   </style>
+</head>
+<body>
+   <div class="sidebar">       
+       <h3>メニュー</h3>
+       <ul>
+           <li><a href="#">ダッシュボード</a></li>
+           <li><a href="#">分析レポート</a></li>
+           <li><a href="#">設定</a></li>
+       </ul>
+   </div>
+
+   <div class="main-content">       
+       <h1>ダッシュボード</h1>
+       <p>メインコンテンツ</p>
+   </div>
+</body>
+</html>
