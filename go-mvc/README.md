@@ -1,8 +1,8 @@
-# 
+# Go MVC Application
 
 `gin`
 ```bash
-go get github.com/gin-gonic/gin
+go get -u github.com/gin-gonic/gin
 ```
 
 `GORM`
