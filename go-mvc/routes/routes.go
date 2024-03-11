@@ -11,12 +11,12 @@ func SetupRoutes() *gin.Engine {
 	// Controllers
 	homeCtrl := controllers.NewHomeController()
 	loginCtrl := controllers.NewLoginController()
-	dashboardCtrl := controllers.NewDashboardController()
+	// dashboardCtrl := controllers.NewDashboardController()
 
 	// Routing
 	HomeRoutes(homeCtrl, router)
 	LoginRoutes(loginCtrl, router)
-	DashboardRoutes(dashboardCtrl, router)
+	// DashboardRoutes(dashboardCtrl, router)
 
 	return router
 }

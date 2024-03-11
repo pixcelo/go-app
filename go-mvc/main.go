@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/pixcelo/go-mvc/routes"
 )
 
@@ -13,9 +12,6 @@ func main() {
 	// db.Connect()
 
 	// Setup Gin router
-	router := gin.Default()
-	routes.HomeRoutes(router)
-	routes.LoginRoutes(router)
-
+	router := routes.SetupRoutes()
 	router.Run("localhost:8530")
 }

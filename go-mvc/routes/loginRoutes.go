@@ -2,13 +2,10 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/pixcelo/go-mvc/controllers"
 )
 
-func LoginRoutes(r *gin.Engine) {
+func LoginRoutes(ctrl *controllers.LoginController, r *gin.Engine) {
 	r.LoadHTMLGlob("views/*/*")
-	r.GET("/login", showLogin)
-}
-
-func showLogin(c *gin.Context) {
-	c.HTML(200, "login.html", nil)
+	r.GET("/login", ctrl.ShowLogin)
 }
