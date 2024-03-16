@@ -24,7 +24,9 @@
 # Go workspace file
 go.work
 
-# Go build file
-.exe
+# Setting file
+.env
+config.yml
+cofig.yaml
 
 # End of https://www.toptal.com/developers/gitignore/api/go
