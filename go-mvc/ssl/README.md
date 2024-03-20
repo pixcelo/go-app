@@ -50,7 +50,7 @@ func main() {
     router.GET("/", func(c *gin.Context) {
         c.HTML(200, "index.html", nil)
     })
-    router.RunTLS(PORT, "ssl/localhost.crt", "ssl/localhost.key")
+    router.RunTLS(":8443", "ssl/localhost.crt", "ssl/localhost.key")
 }
 ```
 
@@ -66,4 +66,30 @@ total 30
 -rw-r--r-- 1 user 197609 1026 Mar 20 06:20 localhost.csr
 -rw-r--r-- 1 user 197609  102 Mar 20 06:20 localhost.csx
 -rw-r--r-- 1 user 197609 1732 Mar 20 06:20 localhost.key
+```
+
+コマンドからサーバーに接続
+```bash
+$ openssl s_client -connect localhost:443 --servername localhost
+
+CONNECTED(0000019C)
+depth=0 C = jp, ST = Osaka, L = Osaka-shi, O = \"Example Inc\", OU = Foo, CN = localhost
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=0 C = jp, ST = Osaka, L = Osaka-shi, O = \"Example Inc\", OU = Foo, CN = localhost
+verify error:num=21:unable to verify the first certificate
+verify return:1
+depth=0 C = jp, ST = Osaka, L = Osaka-shi, O = \"Example Inc\", OU = Foo, CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:C = jp, ST = Osaka, L = Osaka-shi, O = \"Example Inc\", OU = Foo, CN = localhost
+   i:C = jp, ST = Osaka, L = Osaka-shi, O = \"Example Inc\", OU = Foo, CN = tek
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Mar 19 21:20:57 2024 GMT; NotAfter: Mar 18 21:20:57 2029 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIEWTCCA0GgAwIBAgIUfxUG8Mfk0z5KyJnItypQec0+PhUwDQYJKoZIhvcNAQEL
+...
 ```
